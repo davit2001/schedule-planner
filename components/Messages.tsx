@@ -8,14 +8,14 @@ const Messages = ({ messages, isLoading }: {
     messages: UIMessage[];
     isLoading?: boolean;
 }) => {
-    const bottomRef = useRef<HTMLDivElement>(null);
+    const bottomRef = useRef<any>(null);
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages.length]);
 
     return (
         <div className="flex flex-col gap-2 overflow-y-auto p-4 flex-grow">
-            {messages.map((message, idx) => (
+            {messages?.map((message, idx) => (
                 <Message
                     key={idx}
                     message={message.content}
