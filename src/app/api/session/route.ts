@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const res = await fetch(`http://localhost:8080/session/${sessionId}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/session/${sessionId}`);
     if (!res.ok) {
       return NextResponse.json({ error: 'Failed to fetch chat history' });
     }

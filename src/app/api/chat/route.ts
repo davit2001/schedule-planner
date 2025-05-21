@@ -38,8 +38,8 @@ export const previousMessages = [
 
 export async function POST(req: Request) {
     const { messages, sessionId, studentId } = await req.json();
-    console.log('API messages', messages)
-    const response = await fetch(`http://localhost:8080/university/availableCourses/${studentId}`);
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/university/availableCourses/${studentId}`);
     const data = await response.json();
     const coursePrompt = generateCoursePrompt(data);
     const result = streamText({
