@@ -18,7 +18,9 @@ const Sidebar = () => {
     <SidebarProvider defaultOpen>
       <ShadcnSidebar>
         <SidebarHeader>
-
+         <ListItem tag="button" className="bg-white border border-gray-200 shadow-sm rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+           New Chat
+         </ListItem>
         </SidebarHeader>
         <SidebarContent>
           <div className="flex flex-col gap-4 mx-2">
