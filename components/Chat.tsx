@@ -8,15 +8,20 @@ const Chat = ({ sessionId }: {
     sessionId: string
 }) => {
     const initialMessages = useChatHistory(sessionId);
+    //@ts-ignore
     const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
         body: {
-            sessionId: '123',
+            sessionId,
             studentId: '1'
         },
-        initialMessages
+        initialMessages: [
+          {
+            role: 'assistant',
+            content: `Hi there! I’m your smart course planner. Just tell me what you’re looking for — your goals, preferences, or even a rough idea — and I’ll turn that into a personalized, optimized schedule tailored to your degree, prerequisites, and availability. Let’s build your perfect semester together!`,
+          },
+          ...(initialMessages || []),
+        ]
     });
-    console.log('initialMessages', initialMessages);
-    console.log('messages', messages);
 
     return (
         <div className="w-full flex justify-center">
