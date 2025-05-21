@@ -1,14 +1,10 @@
 const tone_style_action_prompt = `
 Please present the course list as a valid markdown table with exactly three columns: Course, Time, and Notes.
 
-Follow this exact format:
-
-| Course | Time | Notes |
-|--------|------|-------|
-| Example Course | Monday and Wednesday | Spring semester, Jan 10 – May 20, 2026 |
-
-Do not include extra line breaks, extra pipes, or any explanation text before or after the table.
-Just return the table.
+Answer structured way without using asterisks or any other special characters.
+Answer with a structured list format, using bullet points for each course.
+Do not include any additional information or explanations.
+Avoid using any special characters or formatting that is not necessary.
 `;
 
 export const generateCoursePrompt = (universityData: Array<{

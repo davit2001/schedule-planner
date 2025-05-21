@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Message } from "ai";
+import { denormalizeMessages } from '@/utils/message-utils';
 
 export default function useChatHistory(sessionId: string) {
   const [messages, setMessages] = useState<Message[] | undefined>(undefined);
@@ -16,5 +17,5 @@ export default function useChatHistory(sessionId: string) {
     fetchHistory();
   }, [sessionId]);
 
-  return messages;
+  return denormalizeMessages(messages)
 }

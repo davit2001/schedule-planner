@@ -15,16 +15,25 @@ export async function POST(req: Request) {
         model: google('gemini-2.5-flash-preview-04-17'),
         messages,
         async onFinish({ response }) {
+            const normalizeMessage = (msg) => ({
+                role: msg.role,
+                content: typeof msg.content === 'string'
+                  ? msg.content
+                  : Array.isArray(msg.content)
+                    ? msg.content.map(part => part.text || '').join('\n')
+                    : '',
+                parts: []
+            });
+
+            const allMessages = [...messages, ...response.messages].map(normalizeMessage);
+            console.log('allMessages', allMessages)
             await fetch(`${process.env.NEXT_PUBLIC_API_URL}/session/${sessionId}/messages`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    messages: [
-                      ...messages,
-                      ...response.messages,
-                    ]
+                    messages: allMessages
                 }),
             });
         }

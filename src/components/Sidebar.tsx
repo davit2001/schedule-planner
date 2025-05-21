@@ -44,7 +44,7 @@ const Sidebar = () => {
         <SidebarContent>
           <div className="flex flex-col gap-4 mx-2">
             <h2 className="text-lg font-semibold px-2">Sessions</h2>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 h-[100vh-120px] overflow-y-auto">
               {!isLoading && !!sessions?.length  && sessions?.map((session_id) => (
                 <Link href={`/session/${session_id}`} key={session_id}>
                   <ListItem active={sessionId == session_id}>
